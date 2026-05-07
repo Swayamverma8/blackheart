@@ -76,6 +76,13 @@ nav.scrolled {
   border-bottom: 1px solid var(--glass-border);
   position: fixed;
 }
+/* ACTIVE NAV LINK */
+.nav-links a.active-nav {
+  color: #fff;
+}
+.nav-links a.active-nav::after {
+  transform: scaleX(1);
+}
 nav.scrolled .nav-links {
   position: absolute;
   left: 50%;
@@ -94,7 +101,7 @@ nav.scrolled .nav-links {
 }
 .nav-links a::after {
   content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
-  height: 1px; background: #fff; transform: scaleX(0);
+  height: 1px; background: #d4af37; transform: scaleX(0);
   transition: transform 0.3s ease;
 }
 .nav-links a:hover { color: #fff; }
@@ -1160,6 +1167,24 @@ function closeVideo() {
 document.getElementById('videoModal').addEventListener('click', function(e) {
   if (e.target === this) closeVideo();
 });
+// ACTIVE NAV HIGHLIGHT
+const navSections = document.querySelectorAll('#about, #members, #music, #events, #videos');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(link => {
+        link.classList.remove('active-nav');
+        if (link.getAttribute('href') === '#' + entry.target.id) {
+          link.classList.add('active-nav');
+        }
+      });
+    }
+  });
+}, { threshold: 0.15, rootMargin: '-80px 0px -50% 0px' });
+
+navSections.forEach(section => sectionObserver.observe(section));
 </script>
 </body>
 </html>
