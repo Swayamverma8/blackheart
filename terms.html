@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms & Conditions — BLACK HEART</title>
+<link rel="icon" type="image/png" href="https://res.cloudinary.com/dnamu1f9w/image/upload/q_auto,f_auto,w_64/bandLogo_m3pcmv.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #000000;
+  --deep: #080808;
+  --surface: #0e0e0e;
+  --surface2: #161616;
+  --glass: rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.08);
+  --white: #ffffff;
+  --silver: #c8c8c8;
+  --muted: #666666;
+  --gold: #d4af37;
+  --gold-dim: rgba(212,175,55,0.12);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Rajdhani', sans-serif;
+  background: var(--black);
+  color: var(--white);
+  overflow-x: hidden;
+  min-height: 100vh;
+  line-height: 1.7;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 1.5rem 4rem;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(0,0,0,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--glass-border);
+}
+.nav-logo img { height: 50px; width: auto; display: block; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 0.85rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--silver); text-decoration: none; transition: color 0.3s; position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+  height: 1px; background: var(--gold); transform: scaleX(0); transition: transform 0.3s ease;
+}
+.nav-links a:hover { color: #fff; }
+.nav-links a:hover::after { transform: scaleX(1); }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+.hamburger span { display: block; width: 24px; height: 1px; background: #fff; }
+
+/* ─── HERO ─── */
+.terms-hero {
+  position: relative;
+  padding: 150px 4rem 70px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--glass-border);
+  background: var(--deep);
+}
+.terms-hero::before {
+  content: 'TERMS';
+  position: absolute; left: -0.02em; top: 50%; transform: translateY(-50%);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(8rem, 20vw, 18rem);
+  color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.03);
+  pointer-events: none; white-space: nowrap; line-height: 1; z-index: 0;
+}
+.hero-inner {
+  position: relative; z-index: 1;
+  display: flex; justify-content: space-between; align-items: flex-end;
+  flex-wrap: wrap; gap: 2rem;
+}
+.page-label {
+  font-size: 0.7rem; letter-spacing: 0.5em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+.page-label::before { content: ''; display: block; width: 30px; height: 1px; background: var(--gold); }
+.page-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  line-height: 0.88; letter-spacing: 0.02em;
+}
+.page-title span {
+  display: block;
+  background: linear-gradient(135deg, #fff 0%, #888 60%, #fff 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero-meta {
+  display: flex; flex-direction: column; gap: 0.75rem; align-items: flex-end;
+}
+.last-updated {
+  font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted);
+}
+.last-updated span { color: var(--gold); }
+
+/* ─── BAND NOTE ─── */
+.band-note {
+  margin: 0 4rem;
+  padding: 2rem 2.5rem;
+  border: 1px solid var(--gold-dim);
+  background: rgba(212,175,55,0.03);
+  position: relative;
+  margin-top: 3rem;
+}
+.band-note::before {
+  content: '♪';
+  position: absolute; top: -12px; left: 2rem;
+  font-size: 1rem; background: var(--black); padding: 0 8px; color: var(--gold);
+}
+.band-note p {
+  font-size: 1rem; color: var(--silver); line-height: 1.8; font-weight: 300;
+}
+.band-note strong { color: var(--white); font-weight: 600; }
+
+/* ─── TOC ─── */
+.toc-wrap {
+  margin: 3rem 4rem 0;
+  padding: 2rem 2.5rem;
+  background: var(--surface);
+  border: 1px solid var(--glass-border);
+}
+.toc-title {
+  font-size: 0.65rem; letter-spacing: 0.5em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 1.5rem;
+  padding-bottom: 1rem; border-bottom: 1px solid var(--glass-border);
+}
+.toc-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4rem 2rem;
+}
+.toc-item {
+  display: flex; align-items: center; gap: 0.75rem;
+  font-size: 0.82rem; color: var(--silver); text-decoration: none;
+  padding: 0.4rem 0; transition: color 0.3s;
+  letter-spacing: 0.05em;
+}
+.toc-item:hover { color: var(--gold); }
+.toc-num {
+  font-family: 'Bebas Neue', sans-serif; font-size: 0.9rem;
+  color: var(--muted); min-width: 24px;
+}
+
+/* ─── CONTENT ─── */
+.terms-content {
+  padding: 4rem 4rem 6rem;
+  max-width: 900px;
+}
+
+.terms-section {
+  margin-bottom: 4rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid var(--glass-border);
+  scroll-margin-top: 100px;
+}
+.terms-section:last-child { border-bottom: none; }
+
+.section-num {
+  font-family: 'Bebas Neue', sans-serif; font-size: 0.85rem;
+  letter-spacing: 0.4em; color: var(--gold); margin-bottom: 0.5rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+.section-num::after {
+  content: ''; flex: 1; height: 1px; background: var(--gold-dim); max-width: 60px;
+}
+
+.section-heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  letter-spacing: 0.04em; line-height: 1;
+  color: var(--white); margin-bottom: 1.5rem;
+}
+
+.section-body {
+  font-size: 1rem; color: var(--silver); font-weight: 300; line-height: 1.9;
+}
+.section-body p { margin-bottom: 1.25rem; }
+.section-body p:last-child { margin-bottom: 0; }
+
+.section-body strong { color: var(--white); font-weight: 600; }
+
+/* Definition list */
+.def-list { display: flex; flex-direction: column; gap: 0; margin: 1rem 0; }
+.def-item {
+  display: grid; grid-template-columns: 160px 1fr;
+  gap: 1.5rem; padding: 1rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  align-items: start;
+}
+.def-item:last-child { border-bottom: none; }
+.def-term {
+  font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--gold); font-weight: 600; padding-top: 0.2rem;
+}
+.def-desc { font-size: 0.95rem; color: var(--silver); line-height: 1.7; }
+
+/* Bullet list */
+.terms-list {
+  list-style: none; margin: 1.25rem 0; display: flex; flex-direction: column; gap: 0.6rem;
+}
+.terms-list li {
+  display: flex; align-items: flex-start; gap: 1rem;
+  font-size: 0.95rem; color: var(--silver); line-height: 1.7;
+}
+.terms-list li::before {
+  content: '—'; color: var(--gold); flex-shrink: 0; margin-top: 0.1rem;
+  font-size: 0.8rem;
+}
+
+/* Highlight box */
+.highlight-box {
+  padding: 1.5rem 2rem; margin: 1.5rem 0;
+  border-left: 2px solid var(--gold);
+  background: rgba(212,175,55,0.04);
+  font-size: 0.95rem; color: var(--silver); line-height: 1.8;
+}
+.highlight-box strong { color: var(--white); }
+
+/* Warning box */
+.warning-box {
+  padding: 1.25rem 1.75rem; margin: 1.5rem 0;
+  border: 1px solid rgba(192,57,43,0.3);
+  background: rgba(192,57,43,0.04);
+  font-size: 0.9rem; color: #e07060; line-height: 1.7;
+  display: flex; gap: 1rem; align-items: flex-start;
+}
+.warning-box::before { content: '⚠'; flex-shrink: 0; margin-top: 0.1rem; }
+
+/* ─── BOTTOM STRIP ─── */
+.terms-strip {
+  border-top: 1px solid var(--glass-border);
+  padding: 2rem 4rem;
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--deep); flex-wrap: wrap; gap: 1rem;
+}
+.strip-text { font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); }
+.strip-right { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.1); }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--black); padding: 3rem 4rem;
+  border-top: 1px solid var(--glass-border);
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;
+}
+.footer-logo img { height: 28px; filter: brightness(0) invert(1); opacity: 0.7; }
+.footer-copy { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.1em; }
+.footer-back {
+  font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; transition: color 0.3s;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.footer-back:hover { color: var(--gold); }
+
+/* ─── REVEAL ─── */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  nav { padding: 1.25rem 2rem; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .terms-hero { padding: 130px 2rem 60px; }
+  .band-note, .toc-wrap { margin-left: 2rem; margin-right: 2rem; }
+  .terms-content { padding: 3rem 2rem 4rem; }
+  .toc-grid { grid-template-columns: 1fr 1fr; }
+  .def-item { grid-template-columns: 1fr; gap: 0.3rem; }
+  .terms-strip, footer { padding: 1.5rem 2rem; flex-direction: column; text-align: center; }
+  .hero-meta { align-items: flex-start; }
+}
+@media (max-width: 600px) {
+  .toc-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo"><img src="https://res.cloudinary.com/dnamu1f9w/image/upload/q_auto,f_auto,w_120/bandLogo_m3pcmv.png" alt="Black Heart"></div>  <ul class="nav-links">
+    <li><a href="blackheart.html#about">About</a></li>
+    <li><a href="blackheart.html#music">Music</a></li>
+    <li><a href="blackheart.html#events">Events</a></li>
+    <li><a href="merch.html">Merch</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<div class="terms-hero">
+  <div class="hero-inner">
+    <div class="hero-left reveal">
+      <div class="page-label">Legal · Black Heart Official</div>
+      <h1 class="page-title">
+        <span>Terms &</span>
+        <span>Conditions</span>
+      </h1>
+    </div>
+    <div class="hero-meta reveal">
+      <div class="last-updated">Last Updated: <span>April 28, 2026</span></div>
+      <div class="last-updated">Jurisdiction: <span>India</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- BAND NOTE -->
+<div class="band-note reveal">
+  <p>
+    <strong>A note from us before you dive in —</strong><br>
+    We're Black Heart, a band built on passion, raw sound, and real connection with our audience. These terms exist not to build walls between us and you, but to keep things honest, fair, and safe for everyone. We've written them in plain language wherever we can. If something feels unclear, reach out — we're always listening.
+  </p>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc-wrap reveal">
+  <div class="toc-title">Table of Contents</div>
+  <div class="toc-grid">
+    <a href="#s1" class="toc-item"><span class="toc-num">01</span> Introduction</a>
+    <a href="#s2" class="toc-item"><span class="toc-num">02</span> Definitions</a>
+    <a href="#s3" class="toc-item"><span class="toc-num">03</span> Use of Website</a>
+    <a href="#s4" class="toc-item"><span class="toc-num">04</span> Intellectual Property</a>
+    <a href="#s5" class="toc-item"><span class="toc-num">05</span> Music & Media</a>
+    <a href="#s6" class="toc-item"><span class="toc-num">06</span> Tickets & Events</a>
+    <a href="#s7" class="toc-item"><span class="toc-num">07</span> Merchandise</a>
+    <a href="#s8" class="toc-item"><span class="toc-num">08</span> User-Generated Content</a>
+    <a href="#s9" class="toc-item"><span class="toc-num">09</span> Third-Party Links</a>
+    <a href="#s10" class="toc-item"><span class="toc-num">10</span> Privacy Policy</a>
+    <a href="#s11" class="toc-item"><span class="toc-num">11</span> Limitation of Liability</a>
+    <a href="#s12" class="toc-item"><span class="toc-num">12</span> Disclaimer</a>
+    <a href="#s13" class="toc-item"><span class="toc-num">13</span> Termination</a>
+    <a href="#s14" class="toc-item"><span class="toc-num">14</span> Changes to Terms</a>
+    <a href="#s15" class="toc-item"><span class="toc-num">15</span> Governing Law</a>
+    <a href="#s16" class="toc-item"><span class="toc-num">16</span> Contact</a>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="terms-content">
+
+  <!-- 01 INTRODUCTION -->
+  <div class="terms-section reveal" id="s1">
+    <div class="section-num">01</div>
+    <h2 class="section-heading">Introduction</h2>
+    <div class="section-body">
+      <p>Welcome to the official website of <strong>Black Heart</strong> (referred to as "we", "us", or "the Band"). This website is located at our official domain and serves as the central hub for everything Black Heart — music, events, media, merchandise, and fan interaction.</p>
+      <p>By accessing or using this website in any way, you confirm that you have read, understood, and agree to be bound by these Terms and Conditions, along with any applicable laws and regulations. If you do not agree with any part of these terms, please discontinue use of the website immediately.</p>
+      <div class="highlight-box">
+        <strong>Simply put:</strong> Using our website means you're cool with these terms. We've kept them as readable as possible — no legalese overload, we promise.
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 DEFINITIONS -->
+  <div class="terms-section reveal" id="s2">
+    <div class="section-num">02</div>
+    <h2 class="section-heading">Definitions</h2>
+    <div class="section-body">
+      <p>To keep things clear, here's what we mean when we use these terms throughout this document:</p>
+      <div class="def-list">
+        <div class="def-item">
+          <div class="def-term">The Band</div>
+          <div class="def-desc">Black Heart, including all its members, management, and authorized representatives.</div>
+        </div>
+        <div class="def-item">
+          <div class="def-term">Website</div>
+          <div class="def-desc">The official Black Heart website and all its pages, subpages, and digital assets.</div>
+        </div>
+        <div class="def-item">
+          <div class="def-term">User / You</div>
+          <div class="def-desc">Any individual or entity who accesses, browses, or uses this website in any capacity.</div>
+        </div>
+        <div class="def-item">
+          <div class="def-term">Content</div>
+          <div class="def-desc">All material on the website including music, lyrics, videos, photos, graphics, text, artwork, branding, and any other media.</div>
+        </div>
+        <div class="def-item">
+          <div class="def-term">Services</div>
+          <div class="def-desc">Features offered through the website including music streaming, event listings, ticket links, merchandise, and contact forms.</div>
+        </div>
+        <div class="def-item">
+          <div class="def-term">User Content</div>
+          <div class="def-desc">Any content submitted by users through forms, comments, or messages on the website.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 USE OF WEBSITE -->
+  <div class="terms-section reveal" id="s3">
+    <div class="section-num">03</div>
+    <h2 class="section-heading">Use of Website</h2>
+    <div class="section-body">
+      <p>This website is intended for personal, non-commercial use. You may browse, stream, and interact with the website for lawful purposes only.</p>
+      <p><strong>Acceptable Use:</strong></p>
+      <ul class="terms-list">
+        <li>Accessing content for personal enjoyment and information</li>
+        <li>Sharing links to our website on social media or other platforms</li>
+        <li>Using contact forms for genuine inquiries, bookings, or fan messages</li>
+        <li>Purchasing merchandise or accessing event information</li>
+      </ul>
+      <p style="margin-top:1.25rem;"><strong>Prohibited Behaviour:</strong></p>
+      <ul class="terms-list">
+        <li>Using the website for any unlawful or fraudulent purpose</li>
+        <li>Harassing, threatening, or abusing other users, fans, or band members</li>
+        <li>Scraping, crawling, or data-mining any part of the website without permission</li>
+        <li>Attempting to gain unauthorized access to any part of the website or its systems</li>
+        <li>Uploading or transmitting viruses, malware, or any harmful code</li>
+        <li>Impersonating the Band, its members, or any other individual</li>
+        <li>Using automated tools or bots to access or interact with the website</li>
+        <li>Reproducing, distributing, or commercially exploiting any content without written consent</li>
+      </ul>
+      <div class="warning-box">
+        Violations may result in immediate termination of access and, where applicable, legal action under Indian law.
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 INTELLECTUAL PROPERTY -->
+  <div class="terms-section reveal" id="s4">
+    <div class="section-num">04</div>
+    <h2 class="section-heading">Intellectual Property Rights</h2>
+    <div class="section-body">
+      <p>Every piece of creative work on this website is ours — and we mean that seriously. All content including but not limited to:</p>
+      <ul class="terms-list">
+        <li>Music compositions, recordings, and audio tracks</li>
+        <li>Song lyrics and written compositions</li>
+        <li>Music videos and visual productions</li>
+        <li>Band photographs and promotional imagery</li>
+        <li>Logo, branding, and graphic design elements</li>
+        <li>Website design, layout, and code</li>
+        <li>Album artwork and merchandise designs</li>
+      </ul>
+      <p style="margin-top:1.25rem;">— is the exclusive intellectual property of <strong>Black Heart</strong> and is protected under applicable Indian and international copyright, trademark, and intellectual property laws.</p>
+      <div class="highlight-box">
+        <strong>No unauthorized use.</strong> You may not reproduce, remix, redistribute, sell, broadcast, or create derivative works from any of our content without our explicit written permission. Fan art and non-commercial creative tributes are appreciated — but please reach out first.
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 MUSIC & MEDIA -->
+  <div class="terms-section reveal" id="s5">
+    <div class="section-num">05</div>
+    <h2 class="section-heading">Music & Media Usage</h2>
+    <div class="section-body">
+      <p>We love that you want to listen to our music and watch our videos. Here's what's allowed and what isn't:</p>
+      <p><strong>You may:</strong></p>
+      <ul class="terms-list">
+        <li>Stream music and watch videos directly on this website for personal enjoyment</li>
+        <li>Share links to our official pages, YouTube channel, or Spotify profile</li>
+        <li>Use short clips for non-commercial social media posts with proper credit</li>
+      </ul>
+      <p style="margin-top:1.25rem;"><strong>You may not:</strong></p>
+      <ul class="terms-list">
+        <li>Download, record, or rip audio or video content from this website</li>
+        <li>Redistribute or re-upload our music or videos to any platform</li>
+        <li>Use our music in commercial projects, films, advertisements, or content without a license</li>
+        <li>Remix, sample, or alter our music without written authorization</li>
+        <li>Claim ownership of any content that belongs to Black Heart</li>
+      </ul>
+      <p style="margin-top:1.25rem;">For licensing inquiries, sync requests, or media use permissions, contact us at <strong>blackheartofficial@gmail.com</strong>.</p>
+    </div>
+  </div>
+
+  <!-- 06 TICKETS & EVENTS -->
+  <div class="terms-section reveal" id="s6">
+    <div class="section-num">06</div>
+    <h2 class="section-heading">Tickets & Events</h2>
+    <div class="section-body">
+      <p>We announce our shows and tours here, and we can't wait to see you live. However, please note the following:</p>
+      <ul class="terms-list">
+        <li>Ticket sales may be handled through <strong>third-party platforms</strong> (such as BookMyShow, Insider, or similar services). We are not responsible for any issues arising from those platforms including payment failures, booking errors, or customer service matters.</li>
+        <li>Event details including <strong>dates, times, venues, and lineups are subject to change</strong> without prior notice due to circumstances beyond our control.</li>
+        <li>In the event of cancellation or rescheduling, refund policies will be governed by the respective ticketing platform's terms.</li>
+        <li>Black Heart reserves the right to refuse entry to any individual who violates event or venue rules.</li>
+        <li>Recording of live performances (audio or video) without explicit permission is strictly prohibited.</li>
+      </ul>
+      <div class="highlight-box">
+        Always verify event details directly with the official ticketing platform before making travel or accommodation arrangements.
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 MERCHANDISE -->
+  <div class="terms-section reveal" id="s7">
+    <div class="section-num">07</div>
+    <h2 class="section-heading">Merchandise</h2>
+    <div class="section-body">
+      <p>If we offer merchandise through this website or linked stores, the following terms apply:</p>
+      <ul class="terms-list">
+        <li><strong>Product descriptions</strong> are provided in good faith. Colors, sizes, and designs may vary slightly from images shown.</li>
+        <li><strong>Pricing</strong> is listed in Indian Rupees (INR) unless stated otherwise and is subject to change without notice.</li>
+        <li><strong>Availability</strong> is not guaranteed. Items may sell out or be discontinued at any time.</li>
+        <li><strong>Shipping</strong> timelines are estimates only and may vary based on location and courier availability.</li>
+        <li><strong>Returns & Refunds:</strong> Defective or incorrect items may be returned within 7 days of receipt. We do not accept returns for change of mind. Contact us at <strong>blackheartofficial@gmail.com</strong> to initiate a return.</li>
+        <li>We are not responsible for delays or losses caused by third-party shipping providers.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 08 USER-GENERATED CONTENT -->
+  <div class="terms-section reveal" id="s8">
+    <div class="section-num">08</div>
+    <h2 class="section-heading">User-Generated Content</h2>
+    <div class="section-body">
+      <p>We love hearing from our fans. Whether it's a message through our contact form, a comment, or a fan submission, here's what you need to know:</p>
+      <ul class="terms-list">
+        <li>By submitting any content to us, you grant Black Heart a <strong>non-exclusive, royalty-free licence</strong> to use, display, or share that content in connection with our promotional activities.</li>
+        <li>You are solely responsible for any content you submit. Do not send anything that is offensive, defamatory, harassing, abusive, illegal, or infringes on anyone else's rights.</li>
+        <li>We reserve the right to <strong>remove or reject any content</strong> at our sole discretion, without notice or explanation.</li>
+        <li>Do not submit personal information of others without their consent.</li>
+        <li>Spam, unsolicited promotions, or bulk messages will be removed and may result in being blocked.</li>
+      </ul>
+      <div class="warning-box">
+        Any content that is hateful, discriminatory, sexually explicit, or threatens harm will be removed immediately and may be reported to relevant authorities.
+      </div>
+    </div>
+  </div>
+
+  <!-- 09 THIRD-PARTY LINKS -->
+  <div class="terms-section reveal" id="s9">
+    <div class="section-num">09</div>
+    <h2 class="section-heading">Third-Party Links</h2>
+    <div class="section-body">
+      <p>Our website may contain links to external platforms and services such as:</p>
+      <ul class="terms-list">
+        <li>Spotify, Apple Music, YouTube, and other streaming platforms</li>
+        <li>Instagram, Facebook, and other social media channels</li>
+        <li>Third-party ticketing platforms (BookMyShow, Insider, etc.)</li>
+        <li>Merchandise or e-commerce platforms</li>
+      </ul>
+      <p style="margin-top:1.25rem;">These links are provided for your convenience only. <strong>Black Heart does not control, endorse, or take responsibility</strong> for the content, privacy practices, or services of any third-party website. Accessing external links is entirely at your own risk, and we encourage you to review the terms and privacy policies of those platforms independently.</p>
+    </div>
+  </div>
+
+  <!-- 10 PRIVACY POLICY -->
+  <div class="terms-section reveal" id="s10">
+    <div class="section-num">10</div>
+    <h2 class="section-heading">Privacy Policy</h2>
+    <div class="section-body">
+      <p>Your privacy matters to us. When you interact with this website — whether through our contact form, newsletter signup, or merchandise purchase — we may collect certain personal information such as your name, email address, and city.</p>
+      <ul class="terms-list">
+        <li>We collect only the information necessary to respond to your inquiry or fulfil your request.</li>
+        <li>Your information will <strong>never be sold</strong> to third parties or used for unsolicited commercial purposes.</li>
+        <li>We may use your email to send occasional updates about Black Heart (shows, releases, news). You can opt out at any time.</li>
+        <li>Data is stored securely and accessed only by authorized members of the Black Heart team.</li>
+        <li>We comply with applicable Indian data protection laws and guidelines.</li>
+      </ul>
+      <p style="margin-top:1.25rem;">For data-related inquiries or to request deletion of your information, email us at <strong>blackheartofficial@gmail.com</strong>.</p>
+    </div>
+  </div>
+
+  <!-- 11 LIMITATION OF LIABILITY -->
+  <div class="terms-section reveal" id="s11">
+    <div class="section-num">11</div>
+    <h2 class="section-heading">Limitation of Liability</h2>
+    <div class="section-body">
+      <p>To the fullest extent permitted by law, <strong>Black Heart shall not be liable</strong> for any direct, indirect, incidental, consequential, or special damages arising from:</p>
+      <ul class="terms-list">
+        <li>Temporary or permanent unavailability of the website or any of its features</li>
+        <li>Errors, inaccuracies, or outdated information on the website</li>
+        <li>Unauthorized access to or alteration of your data</li>
+        <li>Issues arising from the use of third-party platforms or services linked from this website</li>
+        <li>Technical failures, server downtime, or data loss</li>
+        <li>Any actions taken by users in reliance on content found on this website</li>
+      </ul>
+      <p style="margin-top:1.25rem;">Your use of this website is entirely at your own risk.</p>
+    </div>
+  </div>
+
+  <!-- 12 DISCLAIMER -->
+  <div class="terms-section reveal" id="s12">
+    <div class="section-num">12</div>
+    <h2 class="section-heading">Disclaimer</h2>
+    <div class="section-body">
+      <p>All content on this website is provided <strong>"as is"</strong> without warranties of any kind, either express or implied. Black Heart makes no guarantees regarding:</p>
+      <ul class="terms-list">
+        <li>The accuracy, completeness, or timeliness of any information on the website</li>
+        <li>Continuous, uninterrupted availability of the website or its features</li>
+        <li>The absence of errors, bugs, or harmful components</li>
+        <li>The suitability of content for any particular purpose</li>
+      </ul>
+      <div class="highlight-box">
+        We do our best to keep everything up to date and running smoothly — but we're a band, not a tech company. Bear with us.
+      </div>
+    </div>
+  </div>
+
+  <!-- 13 TERMINATION -->
+  <div class="terms-section reveal" id="s13">
+    <div class="section-num">13</div>
+    <h2 class="section-heading">Termination</h2>
+    <div class="section-body">
+      <p>Black Heart reserves the right, at its sole discretion, to:</p>
+      <ul class="terms-list">
+        <li>Restrict, suspend, or permanently terminate your access to this website at any time</li>
+        <li>Remove any content you have submitted that violates these terms</li>
+        <li>Block IP addresses or devices associated with abusive or harmful behaviour</li>
+        <li>Take legal action where appropriate under Indian law</li>
+      </ul>
+      <p style="margin-top:1.25rem;">Termination may occur <strong>without prior notice</strong> if we determine that your actions violate these terms or harm the Band, its members, or other users.</p>
+    </div>
+  </div>
+
+  <!-- 14 CHANGES TO TERMS -->
+  <div class="terms-section reveal" id="s14">
+    <div class="section-num">14</div>
+    <h2 class="section-heading">Changes to Terms</h2>
+    <div class="section-body">
+      <p>We may update these Terms and Conditions at any time to reflect changes in our services, legal requirements, or how we operate. When we do:</p>
+      <ul class="terms-list">
+        <li>The updated version will be posted on this page with a revised "Last Updated" date</li>
+        <li>Continued use of the website after changes are posted constitutes your acceptance of the revised terms</li>
+        <li>We encourage you to review this page periodically</li>
+      </ul>
+      <p style="margin-top:1.25rem;">If changes are significant, we may also announce them through our social media channels.</p>
+    </div>
+  </div>
+
+  <!-- 15 GOVERNING LAW -->
+  <div class="terms-section reveal" id="s15">
+    <div class="section-num">15</div>
+    <h2 class="section-heading">Governing Law</h2>
+    <div class="section-body">
+      <p>These Terms and Conditions are governed by and construed in accordance with the laws of <strong>India</strong>. Any disputes arising out of or in connection with these terms or your use of this website shall be subject to the exclusive jurisdiction of the courts located in <strong>New Delhi, India</strong>.</p>
+      <p>Applicable laws include but are not limited to:</p>
+      <ul class="terms-list">
+        <li>The Information Technology Act, 2000 (and amendments)</li>
+        <li>The Copyright Act, 1957</li>
+        <li>The Trade Marks Act, 1999</li>
+        <li>The Consumer Protection Act, 2019</li>
+        <li>The Indian Contract Act, 1872</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 16 CONTACT -->
+  <div class="terms-section reveal" id="s16">
+    <div class="section-num">16</div>
+    <h2 class="section-heading">Contact Information</h2>
+    <div class="section-body">
+      <p>If you have any questions, concerns, or legal inquiries regarding these Terms and Conditions, please reach out to us:</p>
+      <div class="def-list" style="margin-top:1rem;">
+        <div class="def-item">
+          <div class="def-term">Band</div>
+          <div class="def-desc">Black Heart</div>
+        </div>
+        <div class="def-item">
+          <div class="def-term">Email</div>
+          <div class="def-desc"><a href="mailto:blackheartofficial@gmail.com" style="color:var(--gold);text-decoration:none;">blackheartofficial@gmail.com</a></div>
+        </div>
+        <div class="def-item">
+          <div class="def-term">Phone</div>
+          <div class="def-desc"><a href="tel:+918573920875" style="color:var(--gold);text-decoration:none;">+91 85739 20875</a></div>
+        </div>
+        <div class="def-item">
+          <div class="def-term">Location</div>
+          <div class="def-desc">Delhi, India</div>
+        </div>
+        <div class="def-item">
+          <div class="def-term">Instagram</div>
+          <div class="def-desc"><a href="https://www.instagram.com/blackheartofficial4" target="_blank" style="color:var(--gold);text-decoration:none;">@blackheartofficial4</a></div>
+        </div>
+      </div>
+      <div class="highlight-box" style="margin-top:2rem;">
+        We typically respond to all legal and formal inquiries within <strong>5–7 business days</strong>. For general fan messages, use the <a href="contact.html" style="color:var(--gold);">Contact page</a>.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- BOTTOM STRIP -->
+<div class="terms-strip">
+  <span class="strip-text">© 2026 Black Heart · All Rights Reserved · India</span>
+  <span class="strip-right">BLACK HEART</span>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo"><img src="https://res.cloudinary.com/dnamu1f9w/image/upload/q_auto,f_auto,w_120/bandLogo_m3pcmv.png" alt="Black Heart"></div>
+  <div class="footer-copy">
+  © 2026 Black Heart. All rights reserved. &nbsp;·&nbsp;
+  <a href="terms.html" style="color:#666;text-decoration:none;letter-spacing:0.1em;transition:color 0.3s;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#666'">Terms & Conditions</a>
+</div>
+  <a href="blackheart.html" class="footer-back">← Back to Home</a>
+</footer>
+
+<script>
+// NAV SCROLL
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// HAMBURGER
+document.getElementById('hamburger').addEventListener('click', function() {
+  const links = document.querySelector('.nav-links');
+  const isOpen = links.classList.contains('mobile-open');
+  if (isOpen) { links.classList.remove('mobile-open'); links.removeAttribute('style'); }
+  else {
+    links.classList.add('mobile-open');
+    Object.assign(links.style, {
+      display:'flex', flexDirection:'column', position:'fixed',
+      top:'70px', left:'0', right:'0', background:'rgba(0,0,0,0.97)',
+      padding:'2rem', gap:'1.5rem', zIndex:'999', borderBottom:'1px solid rgba(255,255,255,0.08)'
+    });
+  }
+});
+
+// SCROLL REVEAL
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 60);
+  });
+}, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
+revealEls.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

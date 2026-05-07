@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Page Not Found · BLACK HEART</title>
+<link rel="icon" type="image/png" href="https://res.cloudinary.com/dnamu1f9w/image/upload/q_auto,f_auto,w_64/bandLogo_m3pcmv.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #000000;
+  --deep: #080808;
+  --surface: #0e0e0e;
+  --glass-border: rgba(255,255,255,0.08);
+  --white: #ffffff;
+  --silver: #c8c8c8;
+  --muted: #666666;
+  --gold: #d4af37;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+
+body {
+  font-family: 'Rajdhani', sans-serif;
+  background: var(--black);
+  color: var(--white);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: 2rem;
+}
+
+/* ─── BIG 404 BACKGROUND ─── */
+.bg-404 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(12rem, 35vw, 32rem);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.04);
+  pointer-events: none;
+  white-space: nowrap;
+  line-height: 1;
+  z-index: 0;
+  letter-spacing: 0.05em;
+  animation: floatBg 8s ease-in-out infinite;
+}
+@keyframes floatBg {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+  50% { transform: translate(-50%, -50%) translateY(-20px); }
+}
+
+/* ─── NOISE TEXTURE ─── */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0; opacity: 0.4;
+}
+
+/* ─── CONTENT ─── */
+.content {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 0;
+  animation: fadeUp 0.8s ease both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Logo */
+.logo {
+  margin-bottom: 2.5rem;
+}
+.logo img {
+  height: 45px; filter: brightness(0) invert(1); opacity: 0.7;
+}
+
+/* Label */
+.error-label {
+  font-size: 0.68rem; letter-spacing: 0.55em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+.error-label::before, .error-label::after {
+  content: ''; display: block; width: 24px; height: 1px; background: var(--gold);
+}
+
+/* Main heading */
+.error-heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  letter-spacing: 0.06em; line-height: 0.95;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #fff 0%, #888 60%, #fff 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+/* Divider */
+.error-divider {
+  width: 40px; height: 1px; background: rgba(255,255,255,0.15);
+  margin: 0 auto 1.5rem;
+}
+
+/* Description */
+.error-desc {
+  font-size: 1rem; color: var(--silver); font-weight: 300;
+  line-height: 1.8; max-width: 420px; margin-bottom: 0.75rem;
+}
+.error-note {
+  font-size: 0.78rem; color: var(--muted); letter-spacing: 0.15em;
+  margin-bottom: 3rem;
+}
+
+/* Buttons */
+.error-buttons {
+  display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+  margin-bottom: 3rem;
+}
+.btn-home {
+  padding: 0.9rem 2.5rem;
+  background: #fff; color: #000;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.8rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase;
+  text-decoration: none; display: inline-block;
+  transition: all 0.3s;
+}
+.btn-home:hover { background: var(--silver); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,255,255,0.12); }
+
+.btn-contact {
+  padding: 0.9rem 2.5rem;
+  background: transparent; color: #fff;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.8rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase;
+  border: 1px solid rgba(255,255,255,0.3); text-decoration: none; display: inline-block;
+  transition: all 0.3s;
+}
+.btn-contact:hover { border-color: #fff; background: rgba(255,255,255,0.05); transform: translateY(-2px); }
+
+/* Quick links */
+.quick-links {
+  display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center;
+  padding-top: 2rem;
+  border-top: 1px solid var(--glass-border);
+}
+.quick-link {
+  font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none;
+  transition: color 0.3s; display: flex; align-items: center; gap: 0.4rem;
+}
+.quick-link:hover { color: var(--gold); }
+.quick-link::before { content: '→'; font-size: 0.65rem; }
+
+/* Footer note */
+.footer-note {
+  position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(255,255,255,0.15); white-space: nowrap;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 600px) {
+  .error-buttons { flex-direction: column; align-items: center; }
+  .btn-home, .btn-contact { width: 220px; text-align: center; }
+  .quick-links { gap: 1.25rem; }
+  body { overflow: auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- Big background 404 -->
+<div class="bg-404">404</div>
+
+<!-- Main content -->
+<div class="content">
+
+  <!-- Logo -->
+  <div class="logo">
+    <img src="https://res.cloudinary.com/dnamu1f9w/image/upload/q_auto,f_auto,w_120/bandLogo_m3pcmv.png" alt="Black Heart"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+    <span style="display:none; font-family:'Bebas Neue',sans-serif; font-size:1.8rem; letter-spacing:0.3em; color:#fff;">BLACK HEART</span>
+  </div>
+
+  <!-- Label -->
+  <div class="error-label">Error 404</div>
+
+  <!-- Heading -->
+  <h1 class="error-heading">Lost in<br>the Sound</h1>
+
+  <div class="error-divider"></div>
+
+  <!-- Description -->
+  <p class="error-desc">Looks like this page dropped off the setlist. It may have been moved, renamed, or never existed in the first place.</p>
+  <p class="error-note">But the music never stops — head back and keep exploring.</p>
+
+  <!-- Buttons -->
+  <div class="error-buttons">
+    <a href="blackheart.html" class="btn-home">Back to Home</a>
+    <a href="contact.html" class="btn-contact">Contact Us</a>
+  </div>
+
+  <!-- Quick links -->
+  <div class="quick-links">
+    <a href="blackheart.html#about" class="quick-link">About</a>
+    <a href="blackheart.html#music" class="quick-link">Music</a>
+    <a href="blackheart.html#events" class="quick-link">Events</a>
+    <a href="gallery.html" class="quick-link">Gallery</a>
+    <a href="contact.html" class="quick-link">Contact</a>
+  </div>
+
+</div>
+
+<!-- Footer note -->
+<div class="footer-note">© 2025 Black Heart · All Rights Reserved</div>
+
+</body>
+</html>

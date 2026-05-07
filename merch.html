@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merch — BLACK HEART</title>
+<link rel="icon" type="image/png" href="https://res.cloudinary.com/dnamu1f9w/image/upload/q_auto,f_auto,w_64/bandLogo_m3pcmv.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #000000;
+  --deep: #080808;
+  --surface: #0e0e0e;
+  --glass-border: rgba(255,255,255,0.08);
+  --white: #ffffff;
+  --silver: #c8c8c8;
+  --muted: #666666;
+  --gold: #d4af37;
+  --gold-light: #f0d060;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Rajdhani', sans-serif;
+  background: var(--black);
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 1rem 4rem;
+  background: rgba(0,0,0,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--glass-border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo img { height: 50px; width: auto; display: block; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600; font-size: 0.85rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--silver); text-decoration: none;
+  transition: color 0.3s; position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+  height: 1px; background: #fff; transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+.nav-links a:hover, .nav-links a.active { color: #fff; }
+.nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+.hamburger span { display: block; width: 24px; height: 1px; background: #fff; transition: all 0.3s; }
+
+/* ─── COMING SOON OVERLAY ─── */
+#coming-soon-overlay {
+  position: fixed; inset: 0; z-index: 500;
+  background: rgba(0,0,0,0.92);
+  backdrop-filter: blur(12px);
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column;
+  animation: overlayIn 1s ease both;
+}
+@keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
+
+.overlay-content {
+  text-align: center;
+  padding: 2rem;
+  animation: contentUp 1s 0.3s ease both;
+}
+@keyframes contentUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
+
+.overlay-label {
+  font-size: 0.7rem; letter-spacing: 0.6em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.5rem;
+  display: flex; align-items: center; justify-content: center; gap: 1rem;
+}
+.overlay-label::before, .overlay-label::after {
+  content: ''; display: block; width: 40px; height: 1px; background: var(--gold);
+}
+
+.overlay-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4rem, 10vw, 9rem);
+  letter-spacing: 0.08em; line-height: 0.9;
+  background: linear-gradient(135deg, #fff 0%, #d4af37 40%, #fff8dc 60%, #d4af37 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+  animation: shimmer 4s linear infinite;
+  margin-bottom: 0.5rem;
+}
+@keyframes shimmer { to { background-position: 200% center; } }
+
+.overlay-sub {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  letter-spacing: 0.3em; color: var(--silver);
+  margin-bottom: 2rem;
+}
+
+.overlay-desc {
+  font-size: 1.1rem; color: var(--muted); font-weight: 300;
+  max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.8;
+}
+
+/* Notify form */
+.notify-form {
+  display: flex; gap: 0; max-width: 420px; margin: 0 auto 2.5rem;
+  border: 1px solid rgba(212,175,55,0.4);
+}
+.notify-form input {
+  flex: 1; background: rgba(255,255,255,0.05);
+  border: none; outline: none; padding: 0.9rem 1.25rem;
+  font-family: 'Rajdhani', sans-serif; font-size: 0.9rem;
+  color: #fff; letter-spacing: 0.05em;
+}
+.notify-form input::placeholder { color: var(--muted); }
+.notify-form button {
+  background: var(--gold); color: #000; border: none;
+  padding: 0.9rem 1.5rem; cursor: pointer;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase;
+  transition: all 0.3s; white-space: nowrap;
+}
+.notify-form button:hover { background: var(--gold-light); }
+
+.notify-success {
+  display: none; color: var(--gold);
+  font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase;
+  margin-bottom: 2.5rem;
+}
+
+/* Countdown */
+.countdown {
+  display: flex; gap: 2.5rem; justify-content: center; margin-bottom: 2.5rem;
+}
+.countdown-item { text-align: center; }
+.countdown-num {
+  font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; line-height: 1;
+  background: linear-gradient(135deg, #fff, #d4af37);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.countdown-label {
+  font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--muted);
+}
+
+.overlay-dismiss {
+  background: none; border: 1px solid rgba(255,255,255,0.2);
+  color: var(--muted); padding: 0.7rem 2rem; cursor: pointer;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;
+  transition: all 0.3s;
+}
+.overlay-dismiss:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+
+/* ─── PAGE CONTENT (blurred behind overlay) ─── */
+#page-content { filter: blur(4px); pointer-events: none; transition: filter 0.6s ease; }
+#page-content.unblurred { filter: none; pointer-events: all; }
+
+/* ─── HERO ─── */
+.merch-hero {
+  padding: 10rem 4rem 5rem;
+  background: var(--deep);
+  border-bottom: 1px solid var(--glass-border);
+  position: relative; overflow: hidden;
+}
+.merch-hero::before {
+  content: 'MERCH';
+  position: absolute; right: -2rem; top: 50%; transform: translateY(-50%);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22vw; letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.02); pointer-events: none; line-height: 1;
+}
+.merch-hero-label {
+  font-size: 0.7rem; letter-spacing: 0.5em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1rem;
+}
+.merch-hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 7vw, 7rem);
+  letter-spacing: 0.05em; line-height: 0.9;
+  margin-bottom: 1rem;
+}
+.merch-hero-sub {
+  font-size: 1.1rem; color: var(--silver); font-weight: 300;
+  max-width: 500px; line-height: 1.8;
+}
+
+/* ─── FILTER BAR ─── */
+.filter-bar {
+  padding: 1.5rem 4rem;
+  background: var(--black);
+  border-bottom: 1px solid var(--glass-border);
+  display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;
+}
+.filter-label {
+  font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--muted); margin-right: 1rem;
+}
+.filter-btn {
+  padding: 0.4rem 1.2rem; background: none;
+  border: 1px solid var(--glass-border);
+  color: var(--muted); cursor: pointer;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+  transition: all 0.3s; border-radius: 2px;
+}
+.filter-btn:hover, .filter-btn.active {
+  border-color: rgba(255,255,255,0.4); color: #fff; background: rgba(255,255,255,0.04);
+}
+.filter-btn.active { border-color: var(--gold); color: var(--gold); }
+
+/* ─── PRODUCTS GRID ─── */
+.products-section {
+  padding: 4rem;
+  background: var(--black);
+}
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ─── PRODUCT CARD ─── */
+.product-card {
+  background: var(--surface);
+  border: 1px solid var(--glass-border);
+  border-radius: 4px; overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+}
+.product-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255,255,255,0.2);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+}
+.product-card.featured {
+  border-color: rgba(212,175,55,0.35);
+  box-shadow: 0 0 0 1px rgba(212,175,55,0.1);
+}
+.product-card.featured::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), #fff8dc, var(--gold), transparent);
+  z-index: 2;
+}
+
+.product-badge {
+  position: absolute; top: 1rem; left: 1rem; z-index: 3;
+  padding: 0.25rem 0.7rem;
+  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase;
+}
+.badge-new { background: #fff; color: #000; }
+.badge-limited { background: var(--gold); color: #000; }
+.badge-soon { background: rgba(212,175,55,0.15); color: var(--gold); border: 1px solid rgba(212,175,55,0.4); }
+
+/* Product image placeholder */
+.product-img {
+  width: 100%; aspect-ratio: 1;
+  background: #111;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  transition: all 0.4s ease;
+}
+.product-card:hover .product-img { background: #151515; }
+
+/* Placeholder design for each type */
+.placeholder-tshirt, .placeholder-hoodie, .placeholder-poster, .placeholder-cap {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  width: 100%; height: 100%; gap: 0.5rem;
+}
+
+/* T-shirt silhouette */
+.tshirt-shape {
+  width: 120px; height: 100px;
+  position: relative;
+}
+.tshirt-shape svg { width: 100%; height: 100%; }
+
+.placeholder-label {
+  font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase; color: #333;
+}
+
+.product-img-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);
+  opacity: 0; transition: opacity 0.3s;
+  display: flex; align-items: flex-end; justify-content: center; padding-bottom: 1.5rem;
+}
+.product-card:hover .product-img-overlay { opacity: 1; }
+.quick-view {
+  font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: #fff; border: 1px solid rgba(255,255,255,0.4);
+  padding: 0.5rem 1.2rem; background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px);
+}
+
+.product-info { padding: 1.25rem; }
+.product-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem; letter-spacing: 0.05em; margin-bottom: 0.25rem;
+}
+.product-desc {
+  font-size: 0.8rem; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 1rem; line-height: 1.5;
+}
+.product-footer {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.product-price {
+  font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem;
+  color: var(--white); letter-spacing: 0.05em;
+}
+.product-price.soon { color: var(--muted); font-size: 1rem; letter-spacing: 0.2em; text-transform: uppercase; }
+.add-btn {
+  padding: 0.5rem 1.2rem;
+  background: #fff; color: #000; border: none; cursor: pointer;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+  transition: all 0.3s;
+}
+.add-btn:hover { background: var(--silver); transform: translateY(-1px); }
+.add-btn.soon-btn {
+  background: none; border: 1px solid rgba(212,175,55,0.4);
+  color: var(--gold);
+}
+.add-btn.soon-btn:hover { background: rgba(212,175,55,0.1); }
+
+/* Sizes row */
+.product-sizes {
+  display: flex; gap: 0.4rem; margin-bottom: 0.75rem;
+}
+.size-dot {
+  font-size: 0.65rem; letter-spacing: 0.1em;
+  padding: 0.2rem 0.5rem; border: 1px solid #222;
+  color: #444; cursor: default;
+}
+
+/* ─── COMING SOON BANNER ─── */
+.coming-banner {
+  margin: 0 4rem 4rem;
+  border: 1px solid rgba(212,175,55,0.3);
+  background: linear-gradient(135deg, rgba(212,175,55,0.05), transparent);
+  padding: 3rem;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.coming-banner::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.coming-banner-title {
+  font-family: 'Bebas Neue', sans-serif; font-size: 3rem; letter-spacing: 0.1em;
+  color: var(--gold); margin-bottom: 0.5rem;
+}
+.coming-banner-sub {
+  font-size: 0.9rem; color: var(--muted); letter-spacing: 0.1em; font-weight: 300;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--deep); padding: 4rem;
+  border-top: 1px solid var(--glass-border);
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 2rem;
+}
+.footer-logo img { height: 28px; filter: brightness(0) invert(1); }
+.footer-copy { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em; text-align: center; width: 100%; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  nav { padding: 1rem 2rem; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .merch-hero, .products-section { padding-left: 2rem; padding-right: 2rem; }
+  .filter-bar { padding: 1.5rem 2rem; }
+  .coming-banner { margin: 0 2rem 3rem; padding: 2rem; }
+  footer { flex-direction: column; text-align: center; padding: 3rem 2rem; }
+}
+@media (max-width: 600px) {
+  .countdown { gap: 1.5rem; }
+  .notify-form { flex-direction: column; }
+  .products-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+}
+@media (max-width: 400px) {
+  .products-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- COMING SOON OVERLAY -->
+<div id="coming-soon-overlay">
+  <div class="overlay-content">
+    <div class="overlay-label">Black Heart Store</div>
+    <div class="overlay-title">COMING<br>SOON</div>
+    <div class="overlay-sub">The Merch Drop</div>
+    <p class="overlay-desc">
+      Something dark is being crafted. Limited edition drops, exclusive gear — only for those who bleed with the music.
+    </p>
+
+    <!-- Countdown -->
+    <div class="countdown">
+      <div class="countdown-item">
+        <div class="countdown-num" id="cd-days">00</div>
+        <div class="countdown-label">Days</div>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-num" id="cd-hours">00</div>
+        <div class="countdown-label">Hours</div>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-num" id="cd-mins">00</div>
+        <div class="countdown-label">Minutes</div>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-num" id="cd-secs">00</div>
+        <div class="countdown-label">Seconds</div>
+      </div>
+    </div>
+
+    <!-- Notify form -->
+    <div class="notify-form" id="notifyForm">
+      <input type="email" id="notifyEmail" placeholder="your@email.com">
+      <button onclick="handleNotify()">Notify Me</button>
+    </div>
+    <div class="notify-success" id="notifySuccess">
+      ✦ You're on the list. We'll notify you first.
+    </div>
+
+    <button class="overlay-dismiss" onclick="dismissOverlay()">
+      Preview the store →
+    </button>
+  </div>
+</div>
+
+<!-- PAGE CONTENT -->
+<div id="page-content">
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-logo">
+      <a href="blackheart.html"><img src="https://res.cloudinary.com/dnamu1f9w/image/upload/q_auto,f_auto,w_120/bandLogo_m3pcmv.png" alt="Black Heart"></a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="blackheart.html#about">About</a></li>
+      <li><a href="blackheart.html#music">Music</a></li>
+      <li><a href="blackheart.html#events">Events</a></li>
+      <li><a href="merch.html" class="active">Merch</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="merch-hero">
+    <p class="merch-hero-label">Black Heart Store</p>
+    <h1 class="merch-hero-title">Wear the<br>Darkness</h1>
+    <p class="merch-hero-sub">Limited edition drops. Exclusive gear. Crafted for those who live the music.</p>
+  </div>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar">
+    <span class="filter-label">Filter</span>
+    <button class="filter-btn active" onclick="filterProducts('all', this)">All</button>
+    <button class="filter-btn" onclick="filterProducts('tshirt', this)">T-Shirts</button>
+    <button class="filter-btn" onclick="filterProducts('hoodie', this)">Hoodies</button>
+    <button class="filter-btn" onclick="filterProducts('poster', this)">Posters</button>
+    <button class="filter-btn" onclick="filterProducts('cap', this)">Caps</button>
+  </div>
+
+  <!-- PRODUCTS -->
+  <div class="products-section">
+    <div class="products-grid" id="productsGrid">
+
+      <!-- T-Shirt 1 -->
+      <div class="product-card featured" data-cat="tshirt">
+        <span class="product-badge badge-limited">Limited</span>
+        <div class="product-img">
+          <div class="placeholder-tshirt">
+            <svg width="110" height="95" viewBox="0 0 110 95" fill="none">
+              <path d="M35 10 L15 30 L30 35 L30 85 L80 85 L80 35 L95 30 L75 10 L65 20 Q55 28 45 20 Z" fill="#1a1a1a" stroke="#333" stroke-width="1.5"/>
+              <text x="55" y="58" text-anchor="middle" font-family="'Bebas Neue'" font-size="11" fill="#d4af37" letter-spacing="2">BLACK HEART</text>
+              <circle cx="55" cy="45" r="8" fill="none" stroke="#d4af37" stroke-width="0.8" opacity="0.6"/>
+            </svg>
+          </div>
+          <div class="product-img-overlay"><div class="quick-view">Quick View</div></div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Black Heart Classic Tee</div>
+          <div class="product-desc">100% cotton · Oversized fit · Gold logo print</div>
+          <div class="product-sizes">
+            <span class="size-dot">S</span><span class="size-dot">M</span>
+            <span class="size-dot">L</span><span class="size-dot">XL</span><span class="size-dot">XXL</span>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">₹899</div>
+            <button class="add-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hoodie 1 -->
+      <div class="product-card featured" data-cat="hoodie">
+        <span class="product-badge badge-new">New</span>
+        <div class="product-img">
+          <div class="placeholder-hoodie">
+            <svg width="115" height="100" viewBox="0 0 115 100" fill="none">
+              <path d="M40 8 Q57 0 75 8 L95 25 L80 32 L80 88 L35 88 L35 32 L20 25 Z" fill="#1a1a1a" stroke="#333" stroke-width="1.5"/>
+              <path d="M40 8 Q57 18 75 8" fill="none" stroke="#444" stroke-width="1"/>
+              <path d="M35 32 Q57 40 80 32" fill="none" stroke="#333" stroke-width="0.8"/>
+              <text x="57" y="64" text-anchor="middle" font-family="'Bebas Neue'" font-size="9" fill="#c8c8c8" letter-spacing="1.5">BH</text>
+            </svg>
+          </div>
+          <div class="product-img-overlay"><div class="quick-view">Quick View</div></div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Dark Frequency Hoodie</div>
+          <div class="product-desc">Heavyweight fleece · Embroidered · Unisex</div>
+          <div class="product-sizes">
+            <span class="size-dot">S</span><span class="size-dot">M</span>
+            <span class="size-dot">L</span><span class="size-dot">XL</span>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">₹1,799</div>
+            <button class="add-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Poster 1 -->
+      <div class="product-card" data-cat="poster">
+        <div class="product-img">
+          <div class="placeholder-poster">
+            <svg width="75" height="105" viewBox="0 0 75 105" fill="none">
+              <rect x="5" y="5" width="65" height="95" rx="2" fill="#0d0d0d" stroke="#333" stroke-width="1"/>
+              <rect x="12" y="12" width="51" height="55" rx="1" fill="#111" stroke="#222" stroke-width="0.5"/>
+              <text x="37" y="42" text-anchor="middle" font-family="'Bebas Neue'" font-size="10" fill="#d4af37" letter-spacing="1">BLACK</text>
+              <text x="37" y="54" text-anchor="middle" font-family="'Bebas Neue'" font-size="10" fill="#d4af37" letter-spacing="1">HEART</text>
+              <line x1="12" y1="78" x2="63" y2="78" stroke="#222" stroke-width="0.5"/>
+              <text x="37" y="88" text-anchor="middle" font-family="'Bebas Neue'" font-size="7" fill="#444" letter-spacing="2">LIVE 2025</text>
+            </svg>
+          </div>
+          <div class="product-img-overlay"><div class="quick-view">Quick View</div></div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Live 2025 Tour Poster</div>
+          <div class="product-desc">A2 size · Matte finish · Numbered print</div>
+          <div class="product-footer">
+            <div class="product-price">₹449</div>
+            <button class="add-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- T-Shirt 2 -->
+      <div class="product-card" data-cat="tshirt">
+        <span class="product-badge badge-soon">Soon</span>
+        <div class="product-img" style="opacity:0.6;">
+          <div class="placeholder-tshirt">
+            <svg width="110" height="95" viewBox="0 0 110 95" fill="none">
+              <path d="M35 10 L15 30 L30 35 L30 85 L80 85 L80 35 L95 30 L75 10 L65 20 Q55 28 45 20 Z" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1.5"/>
+              <text x="55" y="55" text-anchor="middle" font-family="'Bebas Neue'" font-size="8" fill="#444" letter-spacing="3">SYMPHONY</text>
+            </svg>
+          </div>
+          <div class="product-img-overlay"><div class="quick-view">Quick View</div></div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Symphony Of Emotions Tee</div>
+          <div class="product-desc">Drop 2 · Coming soon · Pre-register now</div>
+          <div class="product-footer">
+            <div class="product-price soon">Coming Soon</div>
+            <button class="add-btn soon-btn">Notify Me</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cap -->
+      <div class="product-card" data-cat="cap">
+        <span class="product-badge badge-limited">Limited</span>
+        <div class="product-img">
+          <div class="placeholder-cap">
+            <svg width="110" height="75" viewBox="0 0 110 75" fill="none">
+              <path d="M20 50 Q55 10 90 50" fill="#1a1a1a" stroke="#333" stroke-width="1.5"/>
+              <path d="M20 50 L90 50 L90 58 Q55 65 20 58 Z" fill="#151515" stroke="#333" stroke-width="1"/>
+              <path d="M5 58 Q20 58 20 50" fill="none" stroke="#333" stroke-width="1.5"/>
+              <text x="55" y="43" text-anchor="middle" font-family="'Bebas Neue'" font-size="10" fill="#d4af37" letter-spacing="1">BH</text>
+            </svg>
+          </div>
+          <div class="product-img-overlay"><div class="quick-view">Quick View</div></div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Black Heart Snapback</div>
+          <div class="product-desc">Adjustable · Embroidered logo · One size</div>
+          <div class="product-footer">
+            <div class="product-price">₹649</div>
+            <button class="add-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hoodie 2 -->
+      <div class="product-card" data-cat="hoodie">
+        <span class="product-badge badge-soon">Soon</span>
+        <div class="product-img" style="opacity:0.6;">
+          <div class="placeholder-hoodie">
+            <svg width="115" height="100" viewBox="0 0 115 100" fill="none">
+              <path d="M40 8 Q57 0 75 8 L95 25 L80 32 L80 88 L35 88 L35 32 L20 25 Z" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1.5"/>
+              <path d="M40 8 Q57 18 75 8" fill="none" stroke="#333" stroke-width="1"/>
+              <text x="57" y="64" text-anchor="middle" font-family="'Bebas Neue'" font-size="8" fill="#333" letter-spacing="1.5">DROP 2</text>
+            </svg>
+          </div>
+          <div class="product-img-overlay"><div class="quick-view">Quick View</div></div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Indore Underground Hoodie</div>
+          <div class="product-desc">Drop 2 · Limited run · Pre-order opens soon</div>
+          <div class="product-footer">
+            <div class="product-price soon">Coming Soon</div>
+            <button class="add-btn soon-btn">Notify Me</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Poster 2 -->
+      <div class="product-card" data-cat="poster">
+        <div class="product-img">
+          <div class="placeholder-poster">
+            <svg width="75" height="105" viewBox="0 0 75 105" fill="none">
+              <rect x="5" y="5" width="65" height="95" rx="2" fill="#0d0d0d" stroke="#333" stroke-width="1"/>
+              <rect x="12" y="12" width="51" height="55" rx="1" fill="#111" stroke="#222" stroke-width="0.5"/>
+              <circle cx="37" cy="39" r="18" fill="none" stroke="#d4af37" stroke-width="0.6" opacity="0.4"/>
+              <text x="37" y="43" text-anchor="middle" font-family="'Bebas Neue'" font-size="8" fill="#c8c8c8" letter-spacing="1">DARK HEARTS</text>
+              <text x="37" y="88" text-anchor="middle" font-family="'Bebas Neue'" font-size="7" fill="#444" letter-spacing="2">INDORE</text>
+            </svg>
+          </div>
+          <div class="product-img-overlay"><div class="quick-view">Quick View</div></div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Dark Hearts Art Print</div>
+          <div class="product-desc">A3 size · Glossy finish · Signed edition</div>
+          <div class="product-footer">
+            <div class="product-price">₹349</div>
+            <button class="add-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- T-Shirt 3 -->
+      <div class="product-card" data-cat="tshirt">
+        <div class="product-img">
+          <div class="placeholder-tshirt">
+            <svg width="110" height="95" viewBox="0 0 110 95" fill="none">
+              <path d="M35 10 L15 30 L30 35 L30 85 L80 85 L80 35 L95 30 L75 10 L65 20 Q55 28 45 20 Z" fill="#111" stroke="#333" stroke-width="1.5"/>
+              <circle cx="55" cy="52" r="15" fill="none" stroke="#c8c8c8" stroke-width="0.8" opacity="0.5"/>
+              <text x="55" y="56" text-anchor="middle" font-family="'Bebas Neue'" font-size="7" fill="#888" letter-spacing="1">EST 2025</text>
+            </svg>
+          </div>
+          <div class="product-img-overlay"><div class="quick-view">Quick View</div></div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Est. 2025 Vintage Tee</div>
+          <div class="product-desc">Washed cotton · Relaxed fit · Back print</div>
+          <div class="product-sizes">
+            <span class="size-dot">S</span><span class="size-dot">M</span>
+            <span class="size-dot">L</span><span class="size-dot">XL</span>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">₹799</div>
+            <button class="add-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- COMING SOON BANNER -->
+  <div class="coming-banner">
+    <div class="coming-banner-title">More Drops Coming</div>
+    <p class="coming-banner-sub">New collections dropping every month. Follow us to stay updated.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">
+      <a href="blackheart.html"><img src="https://res.cloudinary.com/dnamu1f9w/image/upload/q_auto,f_auto,w_120/bandLogo_m3pcmv.png" alt="Black Heart"></a>
+    </div>
+    <div class="footer-copy">
+      © 2025 Black Heart. All rights reserved. &nbsp;·&nbsp;
+      <a href="terms.html" style="color:#666;text-decoration:none;letter-spacing:0.1em;transition:color 0.3s;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#666'">Terms & Conditions</a>
+    </div>
+  </footer>
+
+</div><!-- end page-content -->
+
+<script>
+// Countdown — set your launch date here
+const launchDate = new Date('2025-08-01T00:00:00');
+function updateCountdown() {
+  const now = new Date();
+  const diff = launchDate - now;
+  if (diff <= 0) {
+    document.querySelector('.countdown').style.display = 'none';
+    return;
+  }
+  const days  = Math.floor(diff / (1000*60*60*24));
+  const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+  const mins  = Math.floor((diff % (1000*60*60)) / (1000*60));
+  const secs  = Math.floor((diff % (1000*60)) / 1000);
+  document.getElementById('cd-days').textContent  = String(days).padStart(2,'0');
+  document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+  document.getElementById('cd-mins').textContent  = String(mins).padStart(2,'0');
+  document.getElementById('cd-secs').textContent  = String(secs).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// Dismiss overlay
+function dismissOverlay() {
+  const overlay = document.getElementById('coming-soon-overlay');
+  overlay.style.opacity = '0';
+  overlay.style.transition = 'opacity 0.6s ease';
+  setTimeout(() => overlay.style.display = 'none', 600);
+  document.getElementById('page-content').classList.add('unblurred');
+}
+
+// Notify
+function handleNotify() {
+  const email = document.getElementById('notifyEmail').value;
+  if (!email || !email.includes('@')) {
+    document.getElementById('notifyEmail').style.borderBottom = '1px solid #c0392b';
+    return;
+  }
+  document.getElementById('notifyForm').style.display = 'none';
+  document.getElementById('notifySuccess').style.display = 'block';
+}
+
+// Filter products
+function filterProducts(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.product-card').forEach(card => {
+    if (cat === 'all' || card.dataset.cat === cat) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// Hamburger
+document.getElementById('hamburger').addEventListener('click', function() {
+  const links = document.querySelector('.nav-links');
+  const isOpen = links.classList.contains('mobile-open');
+  if (isOpen) {
+    links.classList.remove('mobile-open');
+    links.removeAttribute('style');
+  } else {
+    links.classList.add('mobile-open');
+    Object.assign(links.style, {
+      display: 'flex', flexDirection: 'column', position: 'fixed',
+      top: '70px', left: '0', right: '0', background: 'rgba(0,0,0,0.97)',
+      padding: '2rem', gap: '1.5rem', zIndex: '999'
+    });
+  }
+});
+</script>
+</body>
+</html>

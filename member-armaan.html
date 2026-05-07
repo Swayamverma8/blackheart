@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Armaan — Black Heart</title>
+<link rel="icon" type="image/png" href="https://res.cloudinary.com/dnamu1f9w/image/upload/q_auto,f_auto,w_64/bandLogo_m3pcmv.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300;400;500;600;700&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --black: #000000; --deep: #080808; --surface: #0e0e0e;
+  --glass: rgba(255,255,255,0.04); --glass-border: rgba(255,255,255,0.08);
+  --white: #ffffff; --silver: #c8c8c8; --muted: #666666;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Rajdhani', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 1.25rem 4rem; background: rgba(0,0,0,0.92);
+  backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo img { height: 44px; }
+.nav-back { display: flex; align-items: center; gap: 0.75rem; font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--silver); text-decoration: none; transition: color 0.3s; }
+.nav-back:hover { color: #fff; }
+.nav-back-arrow { transition: transform 0.3s; }
+.nav-back:hover .nav-back-arrow { transform: translateX(-4px); }
+.bio-hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; }
+.bio-hero-image-col { position: relative; overflow: hidden; }
+.bio-hero-image-col img { width: 100%; height: 100%; object-fit: cover; object-position: top; filter: grayscale(15%) contrast(1.05); display: block; }
+.bio-hero-image-col::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.7) 100%); pointer-events: none; }
+.bio-hero-image-col::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); z-index: 2; }
+.bio-hero-content { background: var(--deep); display: flex; flex-direction: column; justify-content: center; padding: 7rem 5rem 5rem; border-left: 1px solid var(--glass-border); }
+.bio-role-tag { font-size: 0.65rem; letter-spacing: 0.55em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+.bio-role-tag::before { content: ''; display: block; width: 24px; height: 1px; background: rgba(255,255,255,0.3); }
+.bio-name { font-family: 'Bebas Neue', sans-serif; font-size: clamp(4rem, 7vw, 7.5rem); letter-spacing: 0.04em; line-height: 0.88; margin-bottom: 0.5rem; }
+.bio-instrument-tag { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.35rem 1rem; border: 1px solid var(--glass-border); background: var(--glass); font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--silver); margin-bottom: 2.5rem; width: fit-content; }
+.bio-divider { width: 40px; height: 1px; background: rgba(255,255,255,0.25); margin-bottom: 2rem; }
+.bio-quote { font-family: 'Cinzel', serif; font-size: clamp(1rem, 2vw, 1.3rem); line-height: 1.75; color: rgba(255,255,255,0.7); font-style: italic; margin-bottom: 2.5rem; padding-left: 1.5rem; border-left: 2px solid rgba(255,255,255,0.15); }
+.bio-stats-row { display: flex; gap: 2.5rem; padding: 1.5rem 0; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); margin-bottom: 2.5rem; }
+.bio-stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; background: linear-gradient(135deg, #fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.bio-stat-label { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-top: 0.2rem; }
+.bio-social-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+.bio-social-link { padding: 0.55rem 1.25rem; border: 1px solid var(--glass-border); background: transparent; color: var(--silver); font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; text-decoration: none; transition: all 0.3s; }
+.bio-social-link:hover { border-color: #fff; color: #fff; }
+.bio-body { max-width: 1200px; margin: 0 auto; padding: 6rem 4rem; }
+.bio-section { margin-bottom: 6rem; }
+.bio-section-label { font-size: 0.65rem; letter-spacing: 0.5em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 0.75rem; }
+.bio-section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 5vw, 4.5rem); letter-spacing: 0.05em; line-height: 0.9; margin-bottom: 1.5rem; }
+.bio-section-divider { width: 30px; height: 1px; background: rgba(255,255,255,0.2); margin-bottom: 2rem; }
+.bio-story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+.bio-story-text p { font-size: 1.05rem; line-height: 1.95; color: var(--silver); margin-bottom: 1.5rem; font-weight: 300; }
+.bio-gallery { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 220px 220px; gap: 0.75rem; }
+.bio-gallery-item { position: relative; overflow: hidden; background: var(--surface); border: 1px solid var(--glass-border); }
+.bio-gallery-item:first-child { grid-row: span 2; }
+.bio-gallery-item img { width: 100%; height: 100%; object-fit: cover; object-position: top; filter: grayscale(20%); transition: filter 0.5s, transform 0.5s; display: block; }
+.bio-gallery-item:hover img { filter: grayscale(0%); transform: scale(1.06); }
+.bio-gallery-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 0.75rem 1rem; background: linear-gradient(to top, rgba(0,0,0,0.85), transparent); font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); opacity: 0; transition: opacity 0.3s; }
+.bio-gallery-item:hover .bio-gallery-caption { opacity: 1; }
+.bio-instruments-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; border: 1px solid var(--glass-border); background: var(--glass-border); margin-bottom: 3rem; }
+.bio-instrument-card { background: var(--deep); padding: 2rem 1.5rem; position: relative; overflow: hidden; transition: background 0.3s; }
+.bio-instrument-card:hover { background: rgba(255,255,255,0.02); }
+.bio-instrument-icon { font-size: 2rem; margin-bottom: 1rem; }
+.bio-instrument-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.05em; margin-bottom: 0.35rem; }
+.bio-instrument-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+.bio-instrument-num { position: absolute; bottom: 0.75rem; right: 1rem; font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: rgba(255,255,255,0.03); pointer-events: none; line-height: 1; }
+.bio-timeline { position: relative; padding-left: 2rem; }
+.bio-timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--glass-border), transparent); }
+.bio-timeline-item { position: relative; margin-bottom: 2.5rem; padding-left: 2rem; }
+.bio-timeline-item::before { content: ''; position: absolute; left: -2.35rem; top: 0.4rem; width: 8px; height: 8px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); background: var(--black); }
+.bio-timeline-year { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: var(--silver); letter-spacing: 0.1em; margin-bottom: 0.3rem; }
+.bio-timeline-event { font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem; }
+.bio-timeline-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+.bio-other-members { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
+.bio-other-card { position: relative; overflow: hidden; border: 1px solid var(--glass-border); cursor: pointer; transition: all 0.4s; text-decoration: none; }
+.bio-other-card:hover { border-color: rgba(255,255,255,0.25); transform: translateY(-6px); }
+.bio-other-card img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top; filter: grayscale(40%); transition: filter 0.4s, transform 0.4s; display: block; }
+.bio-other-card:hover img { filter: grayscale(0%); transform: scale(1.05); }
+.bio-other-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem 0.75rem 0.75rem; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); }
+.bio-other-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 0.04em; }
+.bio-other-role { font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); }
+footer { background: var(--deep); padding: 3rem 4rem; border-top: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+.footer-logo img { height: 26px; filter: brightness(0) invert(1); }
+.footer-copy { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.1em; }
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .bio-hero { grid-template-columns: 1fr; min-height: auto; }
+  .bio-hero-image-col { height: 60vw; min-height: 320px; }
+  .bio-hero-content { padding: 3rem 2rem; border-left: none; }
+  .bio-body { padding: 4rem 1.5rem; }
+  .bio-story-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .bio-gallery { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .bio-gallery-item:first-child { grid-row: span 1; }
+  .bio-instruments-grid { grid-template-columns: 1fr; }
+  .bio-other-members { grid-template-columns: repeat(2, 1fr); }
+}
+
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo"><img src="https://res.cloudinary.com/dnamu1f9w/image/upload/q_auto,f_auto,w_120/bandLogo_m3pcmv.png" alt="Black Heart"></div>
+  <a href="blackheart.html" class="nav-back"><span class="nav-back-arrow">←</span> Back to Band</a>
+</nav>
+
+<div class="bio-hero">
+  <div class="bio-hero-image-col">
+    <img src="https://res.cloudinary.com/dnamu1f9w/image/upload/q_auto,f_auto,w_900/Armaan_d80dw2.webp" alt="Armaan">
+  </div>
+  <div class="bio-hero-content">
+    <div class="bio-role-tag">Keyboardist</div>
+    <h1 class="bio-name">Armaan</h1>
+    <div class="bio-instrument-tag">Keys · Synth · Pads</div>
+    <div class="bio-divider"></div>
+    <blockquote class="bio-quote">&ldquo;The keyboard is the whole orchestra, if you know how to ask it.&rdquo;</blockquote>
+    <div class="bio-stats-row">
+      <div class="bio-stat"><div class="bio-stat-num">5+</div><div class="bio-stat-label">Yrs Playing</div></div>
+<div class="bio-stat"><div class="bio-stat-num">50+</div><div class="bio-stat-label">Live Shows</div></div>
+<div class="bio-stat"><div class="bio-stat-num">∞</div><div class="bio-stat-label">Sounds</div></div>
+    </div>
+    <div class="bio-social-links">
+      <a href="https://www.instagram.com/a.r.__maan/" class="bio-social-link" target="_blank">Instagram</a>
+      <a href="https://www.youtube.com/@ARMaan1609" class="bio-social-link" target="_blank">YouTube</a>
+      <a href="contact.html" class="bio-social-link">Book Now</a>
+    </div>
+  </div>
+</div>
+
+<div class="bio-body">
+  <div class="bio-section reveal">
+    <p class="bio-section-label">The Story</p>
+    <h2 class="bio-section-title">The Sonic<br>Architect</h2>
+    <div class="bio-section-divider"></div>
+    <div class="bio-story-grid">
+      <div class="bio-story-text">
+        <p>Armaan is Black Heart's sonic painter. While the guitars, bass, and drums build the structure, Armaan colours it — adding layers of atmospheric pads, melodic leads, and harmonic depth that transform a rock band into something closer to a cinematic experience.</p>
+        <p>Classically trained in piano before discovering synthesizers and digital keyboards, Armaan brings both technical precision and experimental curiosity to his playing. He can hold a chord that lasts a minute and make it feel like it's breathing.</p>
+      </div>
+      <div class="bio-story-text">
+        <p>His contributions to the band's Bollywood and Sufi covers are particularly striking — he has an instinctive ability to find the emotional core of a song and amplify it through sound design and arrangement.</p>
+        <p>Armaan is also the band's technology bridge. He manages the keyboards' signal chain, works with backing tracks, and ensures the live sound is as rich and layered as possible. Without him, Black Heart sounds like a great rock band. With him, they sound like an experience.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bio-section reveal">
+    <p class="bio-section-label">Gallery</p>
+    <h2 class="bio-section-title">In Frame</h2>
+    <div class="bio-section-divider"></div>
+    <div class="bio-gallery">
+      <div class="bio-gallery-item">
+        <img src="https://res.cloudinary.com/dnamu1f9w/image/upload/q_auto,f_auto,w_600/Armaan_d80dw2.webp" alt="Armaan">
+        <div class="bio-gallery-caption">Portrait</div>
+      </div>
+      <div class="bio-gallery-item">
+        <img src="https://res.cloudinary.com/dnamu1f9w/image/upload/q_auto,f_auto,w_600/newBandPicture_bkbcte.jpg" alt="Live Show">
+        <div class="bio-gallery-caption">Live Show</div>
+      </div>
+      <div class="bio-gallery-item">
+        <img src="https://res.cloudinary.com/dnamu1f9w/image/upload/q_auto,f_auto,w_600/groupPictureBH_eis4jl.webp" alt="The Band">        <div class="bio-gallery-caption">The Band</div>
+      </div>
+      <div class="bio-gallery-item">
+        <img src="https://res.cloudinary.com/dnamu1f9w/image/upload/q_auto,f_auto,w_600/newFounderVocalist_rstudo.jpg" alt="With Band">
+        <div class="bio-gallery-caption">With Band</div>
+      </div>
+      <div class="bio-gallery-item">
+        <img src="https://res.cloudinary.com/dnamu1f9w/image/upload/q_auto,f_auto,w_600/Armaan_d80dw2.webp" alt="Performance">
+        <div class="bio-gallery-caption">Performance</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bio-section reveal">
+    <p class="bio-section-label">Craft</p>
+    <h2 class="bio-section-title">Instruments<br>&amp; Skills</h2>
+    <div class="bio-section-divider"></div>
+    <div class="bio-instruments-grid">
+      <div class="bio-instrument-card">
+  <div class="bio-instrument-icon">🎹</div>
+  <div class="bio-instrument-name">Keyboard / Piano</div>
+  <div class="bio-instrument-desc">Primary instrument. Comping, leads, and melodic lines across rock, Bollywood, and Sufi repertoire.</div>
+  <div class="bio-instrument-num">01</div>
+</div>
+<div class="bio-instrument-card">
+  <div class="bio-instrument-icon">🎛️</div>
+  <div class="bio-instrument-name">Synthesizer</div>
+  <div class="bio-instrument-desc">Creates atmospheric pads and textural sounds that give Black Heart its cinematic quality.</div>
+  <div class="bio-instrument-num">02</div>
+</div>
+<div class="bio-instrument-card">
+  <div class="bio-instrument-icon">🎵</div>
+  <div class="bio-instrument-name">Arrangement</div>
+  <div class="bio-instrument-desc">Contributes to harmonic arrangements, ensuring the band's chord vocabulary is rich and intentional.</div>
+  <div class="bio-instrument-num">03</div>
+</div>
+    </div>
+  </div>
+
+  <div class="bio-section reveal">
+    <p class="bio-section-label">Journey</p>
+    <h2 class="bio-section-title">Milestones</h2>
+    <div class="bio-section-divider"></div>
+    <div class="bio-timeline">
+      <div class="bio-timeline-item">
+  <div class="bio-timeline-year">2017</div>
+  <div class="bio-timeline-event">Piano Training</div>
+  <div class="bio-timeline-desc">Began formal piano lessons. Built a foundation in Western and Indian classical harmony.</div>
+</div>
+<div class="bio-timeline-item">
+  <div class="bio-timeline-year">2020</div>
+  <div class="bio-timeline-event">Synthesizer Discovery</div>
+  <div class="bio-timeline-desc">Stumbled onto electronic sound design — immediately understood its potential in a live band context.</div>
+</div>
+<div class="bio-timeline-item">
+  <div class="bio-timeline-year">2023</div>
+  <div class="bio-timeline-event">Live Performance</div>
+  <div class="bio-timeline-desc">Began performing with bands at Indore venues, developing his approach to live keyboard playing.</div>
+</div>
+<div class="bio-timeline-item">
+  <div class="bio-timeline-year">2024</div>
+  <div class="bio-timeline-event">Joins Black Heart</div>
+  <div class="bio-timeline-desc">Brings an atmospheric dimension to the band that immediately transforms their live sound.</div>
+</div>
+    </div>
+  </div>
+
+  <div class="bio-section reveal">
+    <p class="bio-section-label">The Band</p>
+    <h2 class="bio-section-title">Meet the<br>Dark Hearts</h2>
+    <div class="bio-section-divider"></div>
+    <div class="bio-other-members">
+      <a href="member-tarang.html" class="bio-other-card">
+  <img src="https://res.cloudinary.com/dnamu1f9w/image/upload/q_auto,f_auto,w_400/Founder_fclt9d.jpg" alt="Tarang Verma">
+  <div class="bio-other-info">
+    <div class="bio-other-name">Tarang Verma</div>
+    <div class="bio-other-role">Founder · Guitarist</div>
+  </div>
+</a>
+<a href="member-shivam.html" class="bio-other-card">
+  <img src="https://res.cloudinary.com/dnamu1f9w/image/upload/q_auto,f_auto,w_400/Shivam_py0l5m.jpg" alt="Shivam Rishant">
+  <div class="bio-other-info">
+    <div class="bio-other-name">Shivam Rishant</div>
+    <div class="bio-other-role">Lead Vocalist</div>
+  </div>
+</a>
+<a href="member-ritjeet.html" class="bio-other-card">
+  <img src="https://res.cloudinary.com/dnamu1f9w/image/upload/q_auto,f_auto,w_400/Ritjeet_qvv6e3.jpg" alt="Ritjeet Deepak">
+  <div class="bio-other-info">
+    <div class="bio-other-name">Ritjeet Deepak</div>
+    <div class="bio-other-role">Flutist</div>
+  </div>
+</a>
+<a href="member-vivek.html" class="bio-other-card">
+  <img src="https://res.cloudinary.com/dnamu1f9w/image/upload/q_auto,f_auto,w_400/Vivek_hgiszb.jpg" alt="Vivek Agnihotri">
+  <div class="bio-other-info">
+    <div class="bio-other-name">Vivek Agnihotri</div>
+    <div class="bio-other-role">Bassist</div>
+  </div>
+</a>
+<a href="member-aryan.html" class="bio-other-card">
+  <img src="https://res.cloudinary.com/dnamu1f9w/image/upload/q_auto,f_auto,w_400/Aryan_a2ajzd.jpg" alt="Aryan Gupta">
+  <div class="bio-other-info">
+    <div class="bio-other-name">Aryan Gupta</div>
+    <div class="bio-other-role">Drummer</div>
+  </div>
+</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo"><img src="https://res.cloudinary.com/dnamu1f9w/image/upload/q_auto,f_auto,w_120/bandLogo_m3pcmv.png" alt="Black Heart"></div>
+  <div class="footer-copy">&copy; 2025 Black Heart. All rights reserved.</div>
+</footer>
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80); });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
